@@ -1,0 +1,50 @@
+﻿<!--<!DOCTYPE html>
+<link href="../static/style.css" rel="stylesheet" />
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Edit Restaurant</title>
+</head>
+<body>
+    <form action="{{url_for('editRestaurant',restaurant_id=i.id)}}" method="post">
+    <p>Name:</p>
+        <input type="text" size="30" name="name" placeholder="{{i.name}}" />
+        <input type="submit" value="Edit" />
+        <a href="{{url_for('showRestaurants')}}">Cancel</a>
+    </form>
+</body>
+</html>-->
+
+
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="row divider green">
+    <div class="col-md-12"></div>
+</div>
+<div class="row banner menu">
+    <div class="col-md-11 col-md-offset-1 padding-none">
+        <h1>Edit {{i.name}}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-1 padding-top">
+        <form action="{{ url_for('editRestaurant',restaurant_id = i.id)}}" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" name="name" value="{{i.name }}">
+                <div class="padding-bottom"></div>
+                <button type="submit" class="btn btn-default" id="submit" type="submit">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save
+                </button>
+                
+            </div>
+        </form>
+        <a href="{{url_for('showRestaurants')}}">
+            <button class="btn btn-default delete">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+            </button>
+        </a>
+    </div>
+</div>
+{% endblock %}

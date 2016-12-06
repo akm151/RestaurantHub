@@ -1,0 +1,101 @@
+﻿<!--<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Edit Menu Item</title>
+</head>
+<body>
+    <form action="{{url_for('editMenuItem',restaurant_id=i.restaurant_id,menu_id=i.id)}}" method="post">
+        <p>Name:</p>
+        <input type="text" size="30" name="name" placeholder="{{i.name}}" />
+        <br/>
+        <p>Course:</p>
+        <input type="text" size="30" name="course" placeholder="{{i.course}}" />
+        <br/>
+        <p>Description:</p>
+        <input type="text" size="30" name="desc" placeholder="{{i.description}}" />
+        <br/>
+        <p>Price:</p>
+        <input type="text" size="30" name="price" placeholder="{{i.price}}" />
+        <br/>
+        <input type="submit" value="Edit" />
+        <a href="{{url_for('showMenu',restaurant_id=i.restaurant_id)}}">Cancel</a>
+
+    </form>
+
+</body>
+</html>-->
+
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="row divider green">
+    <div class="col-md-12"></div>
+</div>
+<div class="row banner menu">
+    <div class="col-md-11 col-md-offset-1 padding-none">
+        <h1>Edit Menu Item</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-1 padding-top">
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" maxlength="100" class="form-control" name="name" value="{{i.name }}">
+
+                <label for="description">Description:</label>
+                <textarea class="form-control" maxlength="250" rows="3" name="description">{{i.description}}</textarea>
+
+                <label for="price">Price:</label>
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="text" maxlength="10" class="form-control" name="price" value="{{i.price}}">
+                </div>
+                <label for="course">Course:</label>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="course" id="course1" value="Appetizer"
+                               {% if i.course== "Appetizer" %}
+                               checked
+                               {% endif %} />Appetizer
+                               
+                               
+                               
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="course" id="course2" value="Entree"
+                               {% if i.course== "Entree" %}checked
+                               {% endif %} />Entree
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="course" id="course3" value="Dessert"
+                               {% if i.course== "Dessert" %}checked
+                               {% endif %} />Dessert
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="course" id="course4" value="Beverage"
+                               {%if i.course== "Beverage" %}checked
+                               {%endif%} />Beverage
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default" id="submit" type="submit">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save
+                </button>
+                <a href="{{url_for('showRestaurants')}}">
+                    <button class="btn btn-default delete">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+                    </button>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

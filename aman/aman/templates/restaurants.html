@@ -1,0 +1,107 @@
+﻿
+<!--<!DOCTYPE html>
+<link href="../static/style.css" rel="stylesheet" />
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Restaurants</title>
+</head>
+<body>
+    
+    <a href='{{url_for("newRestaurant")}}'>Create New Restaurant</a>
+    <br/>
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li><strong>{{message}}</strong></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <br/>
+    
+    {% for i in restaurant %}
+    <div>
+
+        <a href="{{url_for('showMenu',restaurant_id=i.id)}}">{{i.name}}</a>
+        <br/>
+        <a href="{{url_for('editRestaurant',restaurant_id=i.id)}}">Edit</a>
+        <a href="{{url_for('deleteRestaurant',restaurant_id=i.id)}}">Delete</a>
+        <br/>
+        <br/>
+    </div>
+
+    {% endfor %}
+    <br/>
+
+    
+
+</body>
+</html>-->
+
+
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="row top-menu">
+    <div class="col-md-10"></div>
+    <div class="col-md-2 text-right">
+    </div>
+</div>
+<div class="row divider blue">
+    <div class="col-md-12"></div>
+</div>
+<div class="row banner main">
+    <div class="col-md-1"></div>
+    <div class="col-md-11 padding-none">
+        <h1>Restaurants</h1>
+    </div>
+</div>
+
+<div class='flash'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+    <ul>
+        {% for message in messages %}
+        <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+</div>
+
+<div class="row padding-top padding-bottom">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 padding-none">
+        <a href="{{url_for('newRestaurant')}}">
+            <button class="btn btn-default" id="new-restaurant">
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Restaurant
+            </button>
+        </a>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+	{% for restaurant in restaurant %}
+<a href="{{url_for('showMenu', restaurant_id = restaurant.id)}}">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 restaurant-list">
+            <h3>{{restaurant.name}}</h3>
+        </div>
+        <div class="col-md-1">
+            <figure>
+                <img src="{{getUserInfo(restaurant.user_id).picture}}"
+                     alt="" width="150" height="150"
+                     shape="circle">
+                <figcaption>Creator:{{ getUserInfo(restaurant.user_id).name }}</figcaption>
+
+            </figure>
+        </div>
+    </div>
+</a>
+	{% endfor %}
+{% endblock %}
+
